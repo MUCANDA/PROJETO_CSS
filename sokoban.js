@@ -1,7 +1,7 @@
 // let x=3;
 // let y=4;
 
-
+buildGameBoard(8, 8);
 
 const player = new Player(0, 0);
 const celulas = document.querySelectorAll('.celula');
@@ -79,8 +79,36 @@ function calculaPosicao(qtd) {
 return `${qtd * DIST_SALTO + MARGIN_FIX}px`;
 }
 
-console.log(calculaPosicao(0, 64) === "0px");
-console.log(calculaPosicao(1, 64) === "64px");
-console.log(calculaPosicao(2, 32) === "64px");
-console.log(calculaPosicao(10, 60) === "600px");
-console.log(calculaPosicao(-3, 45) === "-135px");
+// console.log(calculaPosicao(0, 64) === "0px");
+// console.log(calculaPosicao(1, 64) === "64px");
+// console.log(calculaPosicao(2, 32) === "64px");
+// console.log(calculaPosicao(10, 60) === "600px");
+// console.log(calculaPosicao(-3, 45) === "-135px");
+
+
+function buildGameBoard(numRows, numCols) {
+   const game = document.getElementById("jogo");
+   const board = document.createElement('div');
+   board.classList.add('tabela');
+
+
+   for (let k = 0; k < numRows; k++) {
+       const linha = document.createElement('div');
+       linha.classList.add('linha');
+       board.append(linha);
+
+       for (let i = 0; i < numCols; i++) {
+           const celula = document.createElement('div');
+           celula.classList.add('celula');
+           linha.appendChild(celula);
+
+          
+               }
+           }
+   game.append(board);
+}
+
+   
+ 
+
+ 
