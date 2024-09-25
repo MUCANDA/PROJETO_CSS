@@ -109,7 +109,7 @@ function buildGameBoard(numRows, numCols) {
 
       }
    }
-   createGameElement('div', 'jogador', board);
+   createGmameElement('div', 'jogador', board);
 }
 
 
