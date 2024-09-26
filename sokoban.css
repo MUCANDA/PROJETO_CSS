@@ -75,4 +75,7 @@ main {
     width: 60px;
     
 }
+.box { background-color: chocolate; }
+.goal { background-color: burlywood; }
+.wall { background-color: darkgray; }
 
