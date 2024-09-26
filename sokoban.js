@@ -1,5 +1,3 @@
-// let x=3;
-// let y=4;
 
 buildGameBoard(8, 8);
 
@@ -104,12 +102,12 @@ function buildGameBoard(numRows, numCols) {
 
 
       for (let i = 0; i < numCols; i++) {
-         const celula = createGameElement('div', 'celula', linha);
+         createGameElement('div', 'celula', linha);
 
 
       }
    }
-   createGmameElement('div', 'jogador', board);
+   createGameElement('div', 'jogador', board);
 }
 
 
