@@ -11,18 +11,19 @@ const boardMap = [
 
 const NUM_ROWS = boardMap.length;
 const NUM_COLS = boardMap[0].length;
-buildGameBoard(NUM_ROWS, NUM_COLS);
 
-const player = new Player(1, 1);
-const celulas = document.querySelectorAll('.celula');
+const positionOfPieces = buildGameBoard(NUM_ROWS, NUM_COLS);
+
+const player = new Player(positionOfPieces.player.k, positionOfPieces.player.i);
+// const celulas = document.querySelectorAll('.celula');
 const playerElement = document.querySelector('.jogador');
 
 const DIST_SALTO = 66;
 const MARGIN_FIX = 4;
 
 
-playerElement.style.top = calculaPosicao(player.x);
-playerElement.style.left = calculaPosicao(player.y);
+// playerElement.style.top = calculaPosicao(player.x);
+// playerElement.style.left = calculaPosicao(player.y);
 
 window.addEventListener("keydown", function (event) {
 
@@ -32,9 +33,6 @@ window.addEventListener("keydown", function (event) {
 
       let k = next.x * 8 + next.y;
       console.log(next);
-      // const { x, y } = next;
-      // const k = x * 8 + y;
-
 
       player.moveTo(next, playerElement, celulas[k]);
    }
@@ -70,8 +68,6 @@ function Player(posx, posy) {
       element.style.left = calculaPosicao(this.y);
 
 
-      // parent.append(element);
-
    }
 }
 
@@ -84,12 +80,6 @@ function calculaPosicao(qtd) {
 
    return `${qtd * DIST_SALTO + MARGIN_FIX}px`;
 }
-
-// console.log(calculaPosicao(0, 64) === "0px");
-// console.log(calculaPosicao(1, 64) === "64px");
-// console.log(calculaPosicao(2, 32) === "64px");
-// console.log(calculaPosicao(10, 60) === "600px");
-// console.log(calculaPosicao(-3, 45) === "-135px");
 function createGameElement(elementName, className, parentNode) {
    const element = document.createElement(elementName);
    element.classList.add(className);
@@ -100,25 +90,29 @@ function createGameElement(elementName, className, parentNode) {
 function buildGameBoard(numRows, numCols) {
    const game = document.getElementById("jogo");
    const board = createGameElement('div', 'tabela', game);
-
+   const positionOfPieces = createGameElement('div', 'jogador', board);
 
 
    for (let k = 0; k < numRows; k++) {
       const linha = createGameElement('div', 'linha', board);
 
 
-    
+
       for (let i = 0; i < numCols; i++) {
          const celula = createGameElement('div', 'celula', linha);
-          const char = boardMap[k][i];
-          
- 
-          if (char === '#')celula.classList.add('wall');
-          if (char === 'G')celula.classList.add('goal');
-          if (char === 'B')celula.classList.add('box');
-       }
+         const char = boardMap[k][i];
+
+
+         if (char === '#') celula.classList.add('wall');
+         if (char === 'G') celula.classList.add('goal');
+         if (char === 'p') celula.classList.add('box');
+         if (char === 'p') {
+            player = new player(k, i);
+         }
+      }
    }
-   createGameElement('div', 'jogador', board);
+
+   return positionOfPieces;
 }
 
 
