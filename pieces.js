@@ -1,12 +1,9 @@
-
 const DIST_SALTO = 66;
 const MARGIN_FIX = 4;
 
 function Piece(x, y) {
-
     this.x = x;
     this.y = y;
-
 
     this.nextPosition = function (keycode) {
         let { x, y } = this;
@@ -15,25 +12,23 @@ function Piece(x, y) {
         if (keycode == "ArrowLeft") y--;
         if (keycode == "ArrowRight") y++;
 
-
         return { x, y };
-
     }
 
     this.moveTo = function (position) {
-
         this.x = position.x;
         this.y = position.y;
 
         this.updateElementPosition();
     }
+
     this.insertElementInto = function (className, parent) {
         this.element = createGameElement('div', className, parent);
 
         this.updateElementPosition();
     }
-    this.updateElementPosition = function () {
 
+    this.updateElementPosition = function () {
         this.element.style.top = calculaPosicao(this.x);
         this.element.style.left = calculaPosicao(this.y);
     }
@@ -42,5 +37,4 @@ function Piece(x, y) {
 
         return `${qtd * DIST_SALTO + MARGIN_FIX}px`;
     }
-
 }
