@@ -8,11 +8,11 @@ const boardMap = [
     ["#", ".", ".", "P", ".", ".", ".", "#"],
     ["#", "#", "#", "#", "#", "#", "#", "#"]
  ]
- 
+
 function buildGameBoard(numRows, numCols) {
     const game = document.getElementById("jogo");
     const board = createGameElement('div', 'tabela', game);
-    const positionOfPieces = createGameElement('div', 'jogador', board);
+    const positionOfPieces = {}
  
  
     for (let k = 0; k < numRows; k++) {
@@ -27,10 +27,8 @@ function buildGameBoard(numRows, numCols) {
  
           if (char === '#') celula.classList.add('wall');
           if (char === 'G') celula.classList.add('goal');
-          if (char === 'p') celula.classList.add('box');
-          if (char === 'p') {
-             player = new player(k, i);
-          }
+          if (char === 'B') celula.classList.add('box');
+          if (char === 'P') positionOfPieces.player = {x: k, y: i};
        }
     }
  
