@@ -1,4 +1,14 @@
-
+const boardMap = [
+    ["#", "#", "#", "#", "#", "#", "#", "#"],
+    ["#", ".", ".", ".", ".", ".", ".", "#"],
+    ["#", ".", ".", ".", "#", ".", ".", "#"],
+    ["#", ".", "#", "G", ".", ".", ".", "#"],
+    ["#", ".", ".", "G", "B", "#", ".", "#"],
+    ["#", ".", ".", "#", ".", "B", ".", "#"],
+    ["#", ".", ".", "P", ".", ".", ".", "#"],
+    ["#", "#", "#", "#", "#", "#", "#", "#"]
+ ]
+ 
 function buildGameBoard(numRows, numCols) {
     const game = document.getElementById("jogo");
     const board = createGameElement('div', 'tabela', game);
@@ -27,6 +37,15 @@ function buildGameBoard(numRows, numCols) {
     return positionOfPieces;
  }
  
+ 
+ 
+function createGameElement(elementName, className, parentNode) {
+    const element = document.createElement(elementName);
+    element.classList.add(className);
+    parentNode.append(element);
+ 
+    return element;
+ }
  
  
  
