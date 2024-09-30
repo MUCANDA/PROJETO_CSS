@@ -23,7 +23,7 @@ window.addEventListener("keydown", function (event) {
 })
 
 function verifyPosition(position) {
-   let { x, y } = position;
+   let  {x: i, y: k} = position;
 
-   return boardMap[x][y] !== '#';
+   return boardMap[k][i] !== '#';
 }
