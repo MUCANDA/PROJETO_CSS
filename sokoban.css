@@ -75,6 +75,16 @@ main {
     width: 60px;
     
 }
+.caixa {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 60px;
+    border-color: #c4bc16;
+}
+
 .box { background-color: chocolate; }
 .goal { background-color: burlywood; }
 .wall { background-color: darkgray; }

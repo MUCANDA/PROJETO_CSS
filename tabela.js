@@ -18,6 +18,7 @@ const NUM_COLS = boardMap[0].length;
     const positionOfPieces = {
         boxes: []
     };
+    console.log(positionOfPieces);
 
     for (let k = 0; k < NUM_ROWS; k++) {
         const linha = createGameElement('div', 'linha', board);
@@ -28,7 +29,6 @@ const NUM_COLS = boardMap[0].length;
             const position = {x: i, y: k} 
             if (char === '#') celula.classList.add('wall');
             if (char === 'G') celula.classList.add('goal');
-            if (char === 'B') celula.classList.add('box');
             if (char === 'P') positionOfPieces.player = position;
             if (char == 'B') positionOfPieces.boxes.push(position);
 
