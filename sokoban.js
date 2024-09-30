@@ -1,7 +1,8 @@
-const NUM_ROWS = boardMap.length;
-const NUM_COLS = boardMap[0].length;
+import Piece from "./pieces.js";
+import {buildGameBoard} from "./tabela.js";
+import {boardMap} from "./tabela.js";
 
-const positionOfPieces = buildGameBoard(NUM_ROWS, NUM_COLS);
+const positionOfPieces = buildGameBoard();
 
 const board = document.querySelector('.tabela');
 const playerElement = createBoardPiece(positionOfPieces.player, 'jogador');
