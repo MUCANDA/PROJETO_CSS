@@ -1,6 +1,6 @@
 import Piece from "./pieces.js";
-import { buildGameBoard } from "../dist/tabela.js";
-import { boardMap } from "../dist/tabela.js";
+import { buildGameBoard } from "./tabela.js";
+import { boardMap } from "./tabela.js";
 
 const { positionOfPieces, numberOfGoals } = buildGameBoard();
 
