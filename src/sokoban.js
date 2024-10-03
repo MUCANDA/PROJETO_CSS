@@ -1,6 +1,6 @@
 import Piece from "./pieces.js";
-import { buildGameBoard } from "./tabela.js";
-import { boardMap } from "./tabela.js";
+import { buildGameBoard } from "../tabela.js";
+import { boardMap } from "../tabela.js";
 
 const positionOfPieces = buildGameBoard();
 
@@ -27,11 +27,6 @@ function createBoardPiece(piecePosition, className) {
 //    }
 // })
 window.addEventListener("keydown", function (event) {
-   event.preventDefault();
-
-   handlePieceMovement(event.code);
-});
-window.addEventListener("keydown", function (event) {
    // event.preventDefault();
 
    handlePieceMovement(event.code);
@@ -46,10 +41,7 @@ function findBoxAtPosition(position) {
    return boxes.find((caixa) => caixa.x === position.x && caixa.y === position.y);
 }
 
-   console.log(findBoxAtPosition({x: 4, y: 4}));
-   console.log(findBoxAtPosition({x: 5, y: 5}));
-   console.log(findBoxAtPosition({x: 4, y: 5}));
-   console.log(findBoxAtPosition({x: 5, y: 4}));
+   
 
    /** Tarefa #2: modificar a função abaixo de forma a tratar tando a movimentação
    * do jogador quanto das caixas.
@@ -58,18 +50,27 @@ function findBoxAtPosition(position) {
      // Variável destinada ao pré-cálculo da posição do jogador
     const nextPlayerPosition = player.nextPosition(keycode);
      // (Modificar) Variável para detectar a "presença" de outra peça
-      const foundPiece = findBoxAtPosition(nextPlayerPosition);
+      const foundBox = findBoxAtPosition(nextPlayerPosition);
 
        // Implementar lógica caso encontre uma outra peça no caminho.
-       if (foundPiece) {
-         
+       if (foundBox) {
+            const nextPosBox = foundBox.nextPosition(keycode);
+            const foundBox2 = findBoxAtPosition(nextPosBox);
+            const boxCanMove = verifyPosition(nextPosBox); 
+
+            if(boxCanMove && !foundBox2) {
+               foundBox.moveTo(nextPosBox);
+               player.moveTo(nextPlayerPosition);
+            }
+   
 
       }
        // E caso não encontre outra peça...
        else {
          // Faça as modificações que forem necessárias para manter o
        // funcionamento do jogo.
-        if (verifyPosition(nextPlayerPosition)) {
+       const playerCanMove = verifyPosition(nextPlayerPosition); 
+        if (playerCanMove) {
             player.moveTo(nextPlayerPosition);
          }
       }
