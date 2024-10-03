@@ -1,8 +1,8 @@
 import Piece from "./pieces.js";
-import { buildGameBoard } from "./tabela.js";
-import { boardMap } from "./tabela.js";
+import { buildGameBoard } from "../dist/tabela.js";
+import { lvl0, lvl1 } from "./level.js";
 
-const { positionOfPieces, numberOfGoals } = buildGameBoard();
+const { boardMap, positionOfPieces, numberOfGoals } = buildGameBoard(lvl0);
 
 const board = document.querySelector('.tabela');
 const player = createBoardPiece(positionOfPieces.player, 'jogador');
