@@ -1,25 +1,7 @@
-import Piece from "./pieces.js";
 import { buildGameBoard } from "../dist/tabela.js";
 import { lvl0, lvl1 } from "./level.js";
 
-const { boardMap, positionOfPieces, numberOfGoals } = buildGameBoard(lvl0);
-
-const board = document.querySelector('.tabela');
-const player = createBoardPiece(positionOfPieces.player, 'jogador');
-const boxes = [];
-
-for (let i = 0; i < positionOfPieces.boxes.length; i++) {
-   let piece = createBoardPiece(positionOfPieces.boxes[i], 'caixa');
-   boxes.push(piece);
-}
-
-function createBoardPiece(piecePosition, className) {
-   const piece = new Piece(piecePosition.x, piecePosition.y);
-   piece.insertElementInto(className, board);
-
-   return piece;
-}
-
+const { boardMap, pieces: { boxes, player }, numberOfGoals } = buildGameBoard(lvl0);
 window.addEventListener("keydown", function (event) {
    handlePieceMovement(event.code);
 });

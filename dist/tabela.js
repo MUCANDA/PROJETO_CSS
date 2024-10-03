@@ -1,21 +1,23 @@
+import Piece from "./pieces.js"
 
+export function buildGameBoard(mapa) {
         const boardMap = mapa.trim().split('\n');
         const game = document.getElementById("jogo");
         const board = createGameElement('div', 'tabela', game);
         const positionOfPieces = {
             boxes: []
     };
-    let numberOfGoals = 0;
-    const NUM_ROWS = boardMap.length;
-
-    for (let k = 0; k < NUM_ROWS; k++) {
+    let numberOfGoals = 0, boxes = [], player = null;
+   
+    for (let k = 0; k < boardMap.length; k++) {
         const linha = createGameElement('div', 'linha', board);
-        const NUM_COLS = boardMap[k].length;
+       
 
-        for (let i = 0; i < NUM_COLS; i++) {
+        for (let i = 0; i < boardMap[k].length; i++) {
             const celula = createGameElement('div', 'celula', linha);
             const char = boardMap[k][i];
             const position = { x: i, y: k }
+
             if (char === '#') celula.classList.add('wall');
             if (char === '-') celula.classList.add('nada');
             if (char === ' ') celula.classList.add('nada');
@@ -23,15 +25,14 @@
                 celula.classList.add('goal')
                 numberOfGoals++;
             };
-            if (char === 'P') positionOfPieces.player = position;
-            if (char == 'B') positionOfPieces.boxes.push(position);
 
+            if (char === 'P') player = createBoardPiece(position, 'jogador');;
+            if (char === 'B') boxes.push(createBoardPiece(position, 'caixa'));;
 
         }
     }
-
-    return { boardMap, positionOfPieces, numberOfGoals };
-
+    return { boardMap, pieces: { boxes, player }, numberOfGoals }
+};
 
 export function createGameElement(elementName, className, parentNode) {
     const element = document.createElement(elementName);
@@ -40,3 +41,11 @@ export function createGameElement(elementName, className, parentNode) {
 
     return element;
 }
+
+function createBoardPiece(piecePosition, className) {
+    const board = document.querySelector('.tabela');''
+    const piece = new Piece(piecePosition.x, piecePosition.y);
+    piece.insertElementInto(className, board);
+ 
+    return piece;
+ }
